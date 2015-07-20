@@ -39,42 +39,28 @@ def convert(dirname, datapackage, resource_name):
     return json.dumps(out, indent=2)
     
 def _convert(options):
+    assert options.dir_path
+    assert options.datapackage_path
+    assert options.resource_name
     print convert(options.dir_path, 
                   options.datapackage_path, 
                   options.resource_name)
 
-commands = {
-    "convert": (_convert, "Convert data"),
-}
-
 def main():
     p = optparse.OptionParser()
-
-    for k, v in commands.iteritems():
-        handler, help_text = v
-        option_name = "--" + k.replace("_", "-")
-        p.add_option(option_name, dest=k, action="store_true", default=False, help=help_text)
-    
-    p.add_option("--resource-name", dest="resource_name",
-         help="Specify resource name within datapackage")
     p.add_option("--dir-path", dest="dir_path",
-         help="Set directory path for datapackage files")
+         help="Set directory path for datapackage files",
+         action="store")
     p.add_option("--datapackage-path", dest="datapackage_path",
-         help="Set path of datapackage.json, within dir-path")
+         help="Set path of datapackage.json, within dir-path",
+         action="store")
+    p.add_option("--resource-name", dest="resource_name",
+         help="Specify resource name within datapackage",
+         action="store")
 
     options, args = p.parse_args()
 
-    for mode, handler_ in commands.iteritems():
-        handler, _ = handler_
-        if getattr(options, mode, None):
-            handler(options)
-            return
-    
-    usage()
-
-def usage():
-    print "You need to specify which mode to run under"
-    sys.exit(1)
+    return _convert(options)
 
 if __name__ == '__main__':
     main()
