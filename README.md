@@ -10,6 +10,20 @@ A couple of differences with the CKAN API:
 * the types used in data packages don't conform to the types that are used in data packages.
 * the resource ID is some kind of hash in the CKAN API, but is just the name of the dataset here.
 
+## Usage
+
+There are three required arguments:
+
+* `--dir-path`: Set the base directory path for datapackage files
+* `--datapackage-path`: Set the path for the datapackage.json within the base directory
+* `--resource-name`: Specify the resource name within the datapackage
+
+You can then use these commands with:
+
+  ./parse --convert --resource-name="eiti_normalised" --dir-path="../NRGI/eiti-parser/" --datapackage-path="datapackage.json"
+
+... which will print the output to the console. Adding ` > out.json` to the end will output to file `out.json`
+
 ## License
 
 The MIT License (MIT)
