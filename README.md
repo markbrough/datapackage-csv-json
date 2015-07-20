@@ -20,7 +20,7 @@ There are three required arguments:
 
 You can then use these commands with:
 
-  ./parse --convert --resource-name="eiti_normalised" --dir-path="../NRGI/eiti-parser/" --datapackage-path="datapackage.json"
+    ./parse --convert --resource-name="eiti_normalised" --dir-path="../NRGI/eiti-parser/" --datapackage-path="datapackage.json"
 
 ... which will print the output to the console. Adding ` > out.json` to the end will output to file `out.json`
 
